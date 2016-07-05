@@ -5,8 +5,14 @@
 
 A simple note taking application for Android devices. The main activity contains a list view displaying all notes sorted by the last modificaiton date. A floating action button in the main activity allows the user to create a new note. The edit activity allows the user to modify the note's title and body.
 
-## Getting Started
-Build with gradle.
+## Building on the command-line with gradle
+
+The wrapper script can be found in the project's root folder. On Windows, you should use ``gradlew.bat``, on all other operating system you should ``gradlew``. 
+Gradle will download the project's dependencies automatically when building the project.  You can build the debug APK using the following command:
+
+```
+gradlew.bat assembleDebug
+```
 
 ## Screenshots
 ![Main Activity][ScreenshotMainActivity]
