@@ -1,7 +1,8 @@
 [ScreenshotMainActivity]: https://cloud.githubusercontent.com/assets/19656425/16587184/39b89ec6-427e-11e6-908f-2ed130040e91.png
 [ScreenshotEditActivity]: https://cloud.githubusercontent.com/assets/19656425/16587190/4631f878-427e-11e6-9989-b927ee200124.png
- 
-# Take Note
+[AppIcon]: https://cloud.githubusercontent.com/assets/19656425/16603591/0fd636c8-42d2-11e6-9b7a-5a450b9a871d.png
+
+# Take Note ![Take Note][AppIcon]
 
 A simple note taking application for Android devices. The main activity contains a list view displaying all notes sorted by the last modificaiton date. A floating action button in the main activity allows the user to create a new note. The edit activity allows the user to modify the note's title and body.
 
