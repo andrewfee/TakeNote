@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Take Note</string>
-    <string name="addnote">Add Note</string>
-    <string name="action_about">About</string>
-    <string name="title_activity_edit">EditActivity</string>
-</resources>
