@@ -65,16 +65,32 @@ public class EditActivity extends AppCompatActivity {
         return true;
     }
 
-    private void initialize()
-    {
+    private void initialize() {
         Intent myIntent = getIntent();
         mCurNoteId = myIntent.getLongExtra("id", Note.NEW_ID);
         String title = myIntent.getStringExtra("title");
         String body = myIntent.getStringExtra("text");
 
+        setNoteTitle(title);
+        setNoteBody(body);
+    }
+
+    private String getNoteTitle() {
+        EditText titleText = (EditText) findViewById(R.id.titleText);
+        return titleText.getText().toString();
+    }
+
+    private String getNoteBody() {
+        EditText bodyText = (EditText) findViewById(R.id.bodyText);
+        return bodyText.getText().toString();
+    }
+
+    private void setNoteTitle(String title){
         EditText titleText = (EditText)findViewById(R.id.titleText);
         titleText.setText(title, TextView.BufferType.EDITABLE);
+    }
 
+    private void setNoteBody(String body){
         EditText bodyText = (EditText)findViewById(R.id.bodyText);
         bodyText.setText(body, TextView.BufferType.EDITABLE);
     }
@@ -84,7 +100,6 @@ public class EditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                saveNote(true);
                 finish();
                 return true;
 
@@ -117,6 +132,8 @@ public class EditActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int buttonId) {
                 new DeleteTask().execute(mCurNoteId);  //delete Note from database asynchronously
                 mNotebook.deleteNote(mCurNoteId);
+                setNoteTitle("");
+                setNoteBody("");
                 finish();
             }
         });
@@ -134,11 +151,8 @@ public class EditActivity extends AppCompatActivity {
     private void saveNote(boolean autoSave)
     {
         //get inputs
-        EditText titleText = (EditText)findViewById(R.id.titleText);
-        String title = titleText.getText().toString();
-
-        EditText bodyText = (EditText)findViewById(R.id.bodyText);
-        String body = bodyText.getText().toString();
+        String title = getNoteTitle();
+        String body = getNoteBody();
 
         //get current datetime
         Date date = new Date(System.currentTimeMillis());
@@ -163,7 +177,8 @@ public class EditActivity extends AppCompatActivity {
             mCurNoteId = mDbHelper.insertNote(new Note(title, body, date));
             mNotebook.addNote(new Note(mCurNoteId, title, body, date));
         }
-        else {
+        else
+        {
             Note n = new Note(mCurNoteId, title, body, date);
             mDbHelper.updateNote(n);
             mNotebook.updateNote(n);
